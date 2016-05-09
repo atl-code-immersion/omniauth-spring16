@@ -1,0 +1,37 @@
+<div id="user-widget">
+	<% if current_user %>
+		<p>Welcome, <strong><%= current_user.name %></strong>!</p>
+    <p>
+		<% if current_user.provider == "facebook" %>
+    	<%= image_tag(current_user.normalimage) %><br />
+    <% else %>
+    	<%= image_tag current_user.image, class: "profile-image" %><br />
+    <% end %>
+    </p>
+    <p><%= link_to "Sign out", signout_path, id: "sign_out" %></p>
+  <% else %>
+    <p>Sign In With...</p>
+    <div class="row">
+      <div class="col-md-1">
+        <%= link_to "/auth/facebook", id: "sign_in" do %>
+          <i class="fa fa-facebook-square fa-3x"></i>
+        <% end %>
+      </div>
+      <div class="col-md-1" id="github-icon">
+        <%= link_to "/auth/github" do %>
+          <i class="fa fa-github-square fa-3x"></i>
+        <% end %>
+      </div>
+      <div class="col-md-1" id="google-icon">
+        <%= link_to "/auth/google_oauth2" do %>
+          <i class="fa fa-google-plus-square fa-3x"></i>
+        <% end %>
+      </div>
+      <div class="col-md-1" id="">
+    	 <%= link_to "/auth/instagram" do %>
+          <i class="fa fa-instagram fa-3x"></i>
+       <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
